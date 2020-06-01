@@ -6,6 +6,7 @@
 
     
     <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <title>Submit <form action=""></form></title>
     </head>
     
@@ -23,33 +24,43 @@
         input[type="button"]:hover{ background: #a4b15c; transition: .6s;}
         
         ::placeholder{color: #fff;}
+        
     
     </style>
 
     <body>
-    
         <div class="form-wrap">
         
             <form action="/api/v1/article/moderator" method="post">
             
                 <h1>Submit a source</h1>
-                <input type="text" name="title" id="title" placeholder="Title">
-                <input type="text" name="author" id="author" placeholder="Author">
-                <input type="datetime" name="year" id="book-year" placeholder="year">
-                <input type="text" name="journel" id="book-journel" placeholder="Journel">
-                <input type="text" name="doi" id="book-doi" placeholder="DOI">
-                <input type="text" name="volume" id="book-volume" placeholder="Volume">
-                <input type="number" name="startPage" id="book-start-page" placeholder="Start Page">
-                <input type="number" name="endPage" id="book-end-page" placeholder="End Page">
+                <input type="text" required name="title" id="title" placeholder="Title">
+                <input type="text" required name="author" id="author" placeholder="Author">
+                <input type="datetime" required name="year" id="book-year" placeholder="Year">
+                <input type="text" required name="place" id="book-place" placeholder="Place of publication">
+                <input type="text" required name="name" id="publisher-name" placeholder="Name of publisher">
+                
+                <input type="hidden" name="choice" value="isBook">
                 <input type="submit" value="Submit">
             
             </form>
-        
-        </div>
-    
-    
+            
+            <div style="text-align:center; color : white"> 
+                <p>The total submitted sources are: <span id="count"></span></p>
+            </div>
+        </div> 
+    <script>
+        //Get request for getting the count of submitted articles
+     $.getJSON('api/v1/article/moderator', function (data, textStatus, jqXHR) {
+         //Fetching the lenght and showing in HTML page.
+         document.getElementById("count").innerHTML = data.data.article.length;
+         });
+    </script>
     
     </body>
+
+    
+
 
 
 
