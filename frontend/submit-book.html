@@ -30,21 +30,21 @@
 
     <body>
         <div class="form-wrap">
-        
+        <!--A submit form that accept user input and send to API at /api/v1/article/moderator this end point-->
             <form action="/api/v1/article/moderator" method="post">
-            
                 <h1>Submit a source</h1>
                 <input type="text" required name="title" id="title" placeholder="Title">
                 <input type="text" required name="author" id="author" placeholder="Author">
                 <input type="datetime" required name="year" id="book-year" placeholder="Year">
                 <input type="text" required name="place" id="book-place" placeholder="Place of publication">
                 <input type="text" required name="name" id="publisher-name" placeholder="Name of publisher">
-                
+                <!--This is the hidden input field which is used to check whether is book submission or article submission-->
                 <input type="hidden" name="choice" value="isBook">
+                <!--This submit button when clicked send all input data to API end point writen in action attribute of form-->
                 <input type="submit" value="Submit">
             
             </form>
-            
+            <!--Where the total count is  shown of article inside span-->
             <div style="text-align:center; color : white"> 
                 <p>The total submitted sources are: <span id="count"></span></p>
             </div>
